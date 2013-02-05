@@ -1,6 +1,12 @@
 body {
-    background-image: url(http://bradjasper.com/subtle-patterns-bookmarklet/patterns/groovepaper.png);
+    background-image: url(../img/groovepaper.png);
     background-repeat: repeat repeat;
+}
+
+hr { 
+    display: block; height: 1px;
+    border: 0; border-top: 1px solid #0e6F68;
+    margin: 1em 0; padding: 0; 
 }
 
 .container {
@@ -9,7 +15,7 @@ body {
 
 #middle_border {
     width: 920px;
-    border: 10px solid white;
+    padding: 10px;
 }
 
 #inner_border {
@@ -94,6 +100,6 @@ body {
     text-align: center;
 }
 
-#newsletter_form input {
+#newsletter_form input[type=email] {
     width: 300px;
 }
