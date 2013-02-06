@@ -10,22 +10,23 @@ hr {
 }
 
 .container {
+    width: 910px;
     border: 15px solid #16783b;
 }
 
 #middle_border {
-    width: 920px;
+    width: 890px;
     padding: 10px;
 }
 
 #inner_border {
-    width: 890px;
+    width: 860px;
     padding: 10px;
     border: 5px solid #0e6F68;
 }
 
 #header {
-    width: 890px;
+    width: 860px;
     text-align: center;
 }
 
@@ -71,14 +72,19 @@ hr {
 .circle {
     background: #16783b;
     border-radius: 50%;
-    border: 1px solid #0e6F68;
+    border: 2px solid #0e6F68;
     width: 100px;
     height: 100px; 
     margin-bottom: 5px;
     margin-left: 25px;
 }
 
+.circle.active {
+    background: white;
+}
+
 .circle a {
+    color: white;
     display: block;
     width: 100px;
     text-align: center;
@@ -87,19 +93,29 @@ hr {
     color: white;
 }
 
+.circle a:hover {
+    text-decoration: none;
+}
+
+.circle.active a {
+    color: #16783b;
+    font-weight: bold;
+}
+
 #content_container {
-   width: 665px;
+   width: 635px;
 }
 
 #newsletter_form {
-    width: 870px;
+    width: 840px;
     border-radius: 15%;
+    border: 2px solid #0e6F68;
     padding: 10px;
     color: white;
     background: #16783b;
     text-align: center;
 }
 
-#newsletter_form input[type=email] {
+#newsletter_form input[type=text] {
     width: 300px;
 }
