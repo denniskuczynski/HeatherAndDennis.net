@@ -81,8 +81,24 @@ body {
     color: white;
 }
 
+.circle.active {
+    background: white;
+    border: 1px solid #16783b;
+}
+
+.circle.active span {
+    color: #16783b;
+    font-weight: bold;
+    display: block;
+    width: 100px;
+    text-align: center;
+    position: relative;
+    top: 40px;
+}
+
 #content_container {
    width: 665px;
+   margin-top: 15px;
 }
 
 #newsletter_form {
