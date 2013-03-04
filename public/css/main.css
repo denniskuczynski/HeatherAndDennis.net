@@ -77,7 +77,7 @@ hr {
     width: 100px;
     height: 100px; 
     margin-bottom: 5px;
-    margin-left: 25px;
+    margin-left: 5px;
 }
 
 .circle.active {
@@ -110,8 +110,8 @@ hr {
 }
 
 #content_container {
-   width: 665px;
-   margin-top: 15px;
+    width: 610px;
+    padding-left: 25px;
 }
 
 .circle a:hover {
@@ -121,10 +121,6 @@ hr {
 .circle.active a {
     color: #16783b;
     font-weight: bold;
-}
-
-#content_container {
-   width: 635px;
 }
 
 .carousel {
@@ -143,6 +139,6 @@ hr {
     text-align: center;
 }
 
-#newsletter_form input[type=text] {
-    width: 300px;
+#newsletter_form input[type=email] {
+    width: 280px;
 }
