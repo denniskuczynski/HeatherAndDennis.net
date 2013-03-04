@@ -64,6 +64,8 @@ hr {
 
 #nav_container {
    width: 175px;
+   position: relative;
+   top: -10px;
 }
 
 #nav_container ul {
