@@ -25,12 +25,14 @@ module HeatherAndDennis
     post "/submit-quiz" do
       @quiz = params[:quiz]
       @correct = 0
-      @correct = @correct + 1 if @quiz['one'] == 'b'
-      @correct = @correct + 1 if @quiz['two'] == 'a'
-      @correct = @correct + 1 if @quiz['three'] == 'c'
-      @correct = @correct + 1 if @quiz['four'] == 'a'
-      @correct = @correct + 1 if @quiz['five'] == 'c'
-      @correct = @correct + 1 if @quiz['six'] == 'a'
+      if @quiz
+        @correct = @correct + 1 if @quiz['one'] == 'b'
+        @correct = @correct + 1 if @quiz['two'] == 'a'
+        @correct = @correct + 1 if @quiz['three'] == 'c'
+        @correct = @correct + 1 if @quiz['four'] == 'a'
+        @correct = @correct + 1 if @quiz['five'] == 'c'
+        @correct = @correct + 1 if @quiz['six'] == 'a'
+      end
       erb :quiz_results
     end
 
