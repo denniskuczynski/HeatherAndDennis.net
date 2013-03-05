@@ -1,5 +1,8 @@
 <h3>You answered <%= @correct %> out of six correct!</h3>
 
+<h4><a href="https://www.facebook.com/dialog/feed?%20%20app_id=403245043105851&%20%20link=http://www.heatheranddennis.net/quiz/&%20%20picture=http://www.heatheranddennis.net/img/proposal.jpg&%20%20name=I%20scored%20<%=@correct%>%20out%20of%206&%20%20caption=Test%20Your%20Heather%20And%20Dennis%20Knowledge%20With%20The%20Heather%20and%20Dennis%20Quiz&%20%20%20%20redirect_uri=http://www.heatheranddennis.net/">Share Quiz on Facebook</a></h4>
+<br/>
+
 <form action="/submit-quiz" method="POST">
   <h4>1. Heather and Dennis' first date was to:</h4>
   <input type="radio" name="quiz[one]" value="a"/>&nbsp;The movie: "Life As We Know It"<br/>
