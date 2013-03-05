@@ -144,3 +144,10 @@ hr {
 #newsletter_form input[type=email] {
     width: 280px;
 }
+
+input[type=radio] {
+    margin-top: 0;
+    margin-right: 4px;
+    position: relative;
+    top: -1px;
+}

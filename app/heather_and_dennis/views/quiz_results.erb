@@ -1,0 +1,39 @@
+<h3>You answered <%= @correct %> out of six correct!</h3>
+
+<form action="/submit-quiz" method="POST">
+  <h4>1. Heather and Dennis' first date was to:</h4>
+  <input type="radio" name="quiz[one]" value="a"/>&nbsp;The movie: "Life As We Know It"<br/>
+  <input type="radio" name="quiz[one]" value="b" checked="true"/>&nbsp;<strong>Cranberry Fest at Rockefeller Center</strong><br/>
+  <input type="radio" name="quiz[one]" value="c"/>&nbsp;Drinks at Mile Square<br/>
+  <input type="radio" name="quiz[one]" value="d"/>&nbsp;Coffee at Starbucks<br/>
+
+  <h4>2. Heather and Dennis' second date was to:</h4>
+  <input type="radio" name="quiz[two]" value="a" checked="true"/>&nbsp;<strong>A haunted house</strong><br/>
+  <input type="radio" name="quiz[two]" value="b"/>&nbsp;A carriage ride around central park<br/>
+  <input type="radio" name="quiz[two]" value="c"/>&nbsp;A jog around central park<br/>
+  <input type="radio" name="quiz[two]" value="d"/>&nbsp;Summerstage<br/>
+
+  <h4>3. Heather and Dennis have never been on a date to:</h4>
+  <input type="radio" name="quiz[three]" value="a"/>&nbsp;a horror movie festival<br/>
+  <input type="radio" name="quiz[three]" value="b"/>&nbsp;an abandoned subway tour<br/>
+  <input type="radio" name="quiz[three]" value="c" checked="true"/>&nbsp;<strong>a kabuki stage show</strong><br/>
+  <input type="radio" name="quiz[three]" value="d"/>&nbsp;a gin festival in a magic forest<br/>
+
+  <h4>4. The worst food Heather and Dennis ever cooked was:</h4>
+  <input type="radio" name="quiz[four]" value="a" checked="true"/>&nbsp;<strong>Lentil Pasta Sauce</strong><br/>
+  <input type="radio" name="quiz[four]" value="b"/>&nbsp;Carmelized Radishes<br/>
+  <input type="radio" name="quiz[four]" value="c"/>&nbsp;Kale and Bacon Soup<br/>
+  <input type="radio" name="quiz[four]" value="d"/>&nbsp;Baingan Bharta<br/>
+
+  <h4>5. The name of Dennis and Heather's car is:</h4>
+  <input type="radio" name="quiz[five]" value="a"/>&nbsp;Lord Grantham<br/>
+  <input type="radio" name="quiz[five]" value="b"/>&nbsp;Felix<br/>
+  <input type="radio" name="quiz[five]" value="c" checked="true"/>&nbsp;<strong>Fernando</strong><br/>
+  <input type="radio" name="quiz[five]" value="d"/>&nbsp;Mr. Alternate Side of the Street<br/>
+
+  <h4>6. Dennis proposed to Heather:</h4>
+  <input type="radio" name="quiz[six]" value="a" checked="true"/>&nbsp;<strong>near the lake in Prospect Park</strong><br/>
+  <input type="radio" name="quiz[six]" value="b"/>&nbsp;after running a half-marathon<br/>
+  <input type="radio" name="quiz[six]" value="c"/>&nbsp;on a beach in Nantucket<br/>
+  <input type="radio" name="quiz[six]" value="d"/>&nbsp;at dinner on their anniversary<br/>
+</form>

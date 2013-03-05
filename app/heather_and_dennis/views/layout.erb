@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=940" />
 
         <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
@@ -44,22 +44,54 @@
                     <div id="content" class="row">
                         <div id="nav_container" class="span4">
                             <ul>
-                                <li class="circle"><a href="/">Welcome</a></li>
-                                <li class="circle"><a href="/information.html">Information</a></li>
-                                <li class="circle"><a href="/quiz.html">Quiz</a></li>
-                                <li class="circle active"><span>Photos</span></li>
-                                <li class="circle"><a href="/registry.html">Registry</a></li>
+                                <% if request.path_info == '/' %>
+                                  <li class="circle active"><span>Welcome</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/">Welcome</a></li>
+                                <% end %>
+
+                                <% if request.path_info == '/information' %>
+                                  <li class="circle active"><span>Information</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/information">Information</a></li>
+                                <% end %>
+
+                                <% if request.path_info == '/quiz' %>
+                                  <li class="circle active"><span>Quiz</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/quiz">Quiz</a></li>
+                                <% end %>
+
+                                <% if request.path_info == '/photos' %>
+                                  <li class="circle active"><span>Photos</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/photos">Photos</a></li>
+                                <% end %>
+
+                                <% if request.path_info == '/registry' %>
+                                  <li class="circle active"><span>Registry</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/registry">Registry</a></li>
+                                <% end %>
                             <ul>
                         </div>
                         <div id="content_container" class="span8">
 
-                            <p>Photos posted to Instagram will show up here if using the hashtag: <strong>#HeatherAndDennis</strong></p>
-
-                            <!-- SnapWidget -->
-<iframe src="http://snapwidget.com/in/?h=aGVhdGhlcmFuZGRlbm5pc3xpbnwyMDB8M3w5fHx5ZXN8NXxub25l" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:645px; height: 1935px" ></iframe>
-
+                            <%= yield %>
 
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Begin MailChimp Signup Form -->
+                        <div id="mc_embed_signup" class="span12">
+                            <form id="newsletter_form" class="form-inline" action="http://heatheranddennis.us6.list-manage.com/subscribe/post?u=898194b85f23e133a6e43a168&amp;id=f8e3c08e8c" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+                                <span>Let us know your email and we'll keep you updated&nbsp;&nbsp;</span>
+                                <input type="text" value="" name="EMAIL" id="mce-EMAIL" placeholder="your@email.com">
+                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
+                            </form>
+                        </div>
+                        <!--End mc_embed_signup-->                           
                     </div>
 
                     <div class="row">
@@ -70,17 +102,6 @@
                         <div class="span3"></div>
                     </div>
 
-                    <div class="row">
-                       <!-- Begin MailChimp Signup Form -->
-                        <div id="mc_embed_signup" class="span12">
-                            <form id="newsletter_form" class="form-inline" action="http://heatheranddennis.us6.list-manage.com/subscribe/post?u=898194b85f23e133a6e43a168&amp;id=f8e3c08e8c" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-                                <span>Let us know your email and we'll keep you updated&nbsp;&nbsp;</span>
-                                <input type="text" value="" name="EMAIL" id="mce-EMAIL" placeholder="your@email.com">
-                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
-                            </form>
-                        </div>
-                        <!--End mc_embed_signup-->  
-                    </div>
                 </div>
             </div>
         </div>
@@ -91,11 +112,15 @@
 
         <script src="js/main.js"></script>
 
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-38260142-1']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
         </script>
     </body>
 </html>
