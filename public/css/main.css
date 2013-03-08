@@ -27,23 +27,23 @@ form h4 {
 }
 
 .container {
-    width: 910px;
+    width: 950px;
     border: 15px solid #16783b;
 }
 
 #middle_border {
-    width: 890px;
+    width: 930px;
     padding: 10px;
 }
 
 #inner_border {
-    width: 860px;
+    width: 900px;
     padding: 10px;
     border: 5px solid #0e6F68;
 }
 
 #header {
-    width: 860px;
+    width: 900px;
     text-align: center;
 }
 
@@ -149,7 +149,7 @@ form h4 {
 #newsletter_form {
     margin-top: 20px;
     margin-bottom: 30px;   
-    width: 835px;
+    width: 875px;
     border-radius: 15%;
     border: 2px solid #0e6F68;
     padding: 10px;
