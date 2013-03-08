@@ -1,12 +1,29 @@
 body {
     background-image: url(../img/groovepaper.png);
     background-repeat: repeat repeat;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 hr { 
     display: block; height: 1px;
     border: 0; border-top: 1px solid #0e6F68;
     margin: 1em 0; padding: 0; 
+}
+
+h3 {
+    color: #0e6F68;
+    font-family: 'Calligraffitti', cursive;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 25px;
+}
+
+form h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .container {
