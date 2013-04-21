@@ -22,6 +22,10 @@ module HeatherAndDennis
       erb :quiz
     end
 
+    get "/music" do
+      erb :music
+    end
+
     post "/submit-quiz" do
       @quiz = params[:quiz]
       @correct = 0

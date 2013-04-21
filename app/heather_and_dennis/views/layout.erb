@@ -57,16 +57,22 @@
                                   <li class="circle"><a href="/information">Information</a></li>
                                 <% end %>
 
-                                <% if request.path_info == '/quiz' %>
-                                  <li class="circle active"><span>Quiz</span></li>
+                                <% if request.path_info == '/music' %>
+                                  <li class="circle active"><span>Music</span></li>
                                 <% else %>
-                                  <li class="circle"><a href="/quiz">Quiz</a></li>
+                                  <li class="circle"><a href="/music">Music</a></li>
                                 <% end %>
 
                                 <% if request.path_info == '/photos' %>
                                   <li class="circle active"><span>Photos</span></li>
                                 <% else %>
                                   <li class="circle"><a href="/photos">Photos</a></li>
+                                <% end %>
+
+                                <% if request.path_info == '/quiz' %>
+                                  <li class="circle active"><span>Quiz</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/quiz">Quiz</a></li>
                                 <% end %>
 
                                 <% if request.path_info == '/registry' %>
