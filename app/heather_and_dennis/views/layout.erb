@@ -57,6 +57,12 @@
                                   <li class="circle"><a href="/information">Information</a></li>
                                 <% end %>
 
+                                <% if request.path_info == '/events' %>
+                                  <li class="circle active"><span>Events</span></li>
+                                <% else %>
+                                  <li class="circle"><a href="/events">Events</a></li>
+                                <% end %>
+
                                 <% if request.path_info == '/music' %>
                                   <li class="circle active"><span>Music</span></li>
                                 <% else %>

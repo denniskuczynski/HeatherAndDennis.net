@@ -14,6 +14,10 @@ module HeatherAndDennis
       erb :information
     end
 
+    get "/events" do
+      erb :events
+    end
+
     get "/photos" do
       erb :photos
     end
