@@ -1,1 +1,1 @@
-web: bundle exec jetty-rackup
+web: bundle exec trinidad -p $PORT

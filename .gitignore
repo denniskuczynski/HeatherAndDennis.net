@@ -2,5 +2,6 @@
 pkg
 doc
 *.gem
-
+log
+tmp
 spec/rails_app/log
