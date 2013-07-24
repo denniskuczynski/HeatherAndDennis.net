@@ -68,7 +68,7 @@ module HeatherAndDennis
         {
           expiration: (Time.now + (30*60)).utc.strftime('%Y-%m-%dT%H:%M:%S.000Z'),
           conditions: [
-            { bucket: 'HeatherAndDennis_WeddingPhotos' },
+            { bucket: 'heatheranddennis_wedding' },
             { acl: 'public-read' },
             ["starts-with", "$key", "uploads/"],
             { success_action_status: '201' }
