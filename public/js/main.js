@@ -1,7 +1,7 @@
 $(function() {
 
     var upload = $('#direct-upload');
-    var form = $(this).find('form');
+    var form = upload.find('form');
 
     form.fileupload({
       url: form.attr('action'),
@@ -26,7 +26,7 @@ $(function() {
         form.submit();
       },
       send: function(e, data) {
-      	console.log("send");
+        console.log("send");
       },
       progress: function(e, data){
         // This is what makes everything really cool, thanks to that callback
