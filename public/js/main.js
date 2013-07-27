@@ -16,7 +16,7 @@ $(function() {
           data: {doc: {title: data.files[0].name}}, // send the file name to the server so it can generate the key param
           async: false,
           success: function(data) {
-            var form_copy = form.clone().appendTo(upload);
+            var form_copy = form.clone().data('key', data.key).appendTo(upload);
 
             // Now that we have our data, we update the form so it contains all
             // the needed data to sign the request
@@ -35,7 +35,7 @@ $(function() {
         // This is what makes everything really cool, thanks to that callback
         // you can now update the progress bar based on the upload progress
         var percent = Math.round((e.loaded / e.total) * 100);
-        $('.bar').css('width', percent + '%');
+        $('form[data-key='+data.key+']').find('.bar').css('width', percent + '%');
       },
       fail: function(e, data) {
         console.log("fail");
@@ -47,9 +47,7 @@ $(function() {
         //TODO: something with the file
       },
       done: function (event, data) {
-        $('.bar').css('width', 0);
-        console.log("done");
-        console.log(data);
+        $('form[data-key='+data.key+']').find('.bar').css('width', 0);
       }
     });
 
