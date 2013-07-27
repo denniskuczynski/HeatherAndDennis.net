@@ -5,27 +5,29 @@
   If you have several photos, you can just drag them onto the screen.
 </p>
 
-<form action="https://heatheranddennis_wedding.s3.amazonaws.com" method="post" enctype="multipart/form-data" class='direct-upload'>
-	<input type="hidden" name="key"/>
-    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
-    <input type="hidden" name="acl" value="public-read"/>
-    <input type="hidden" name="policy"/>
-    <input type="hidden" name="signature"/>
-    <input type="hidden" name="success_action_status" value="201"/>
+<div id="direct-upload">
+	<form action="https://heatheranddennis_wedding.s3.amazonaws.com" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="key"/>
+	    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
+	    <input type="hidden" name="acl" value="public-read"/>
+	    <input type="hidden" name="policy"/>
+	    <input type="hidden" name="signature"/>
+	    <input type="hidden" name="success_action_status" value="201"/>
 
-    <div class="well">
-	    <input type="file" name="file">
-	        <div class="progress progress-striped active hide">
-	            <div class="bar"></div>
-	        </div>
-	    </input>
-	</div>
-</form>
+	    <div class="well">
+		    <input type="file" name="file">
+		        <div class="progress progress-striped active">
+		            <div class="bar"></div>
+		        </div>
+		    </input>
+		</div>
+	</form>
+</div>
 
 <hr/>
 
 <div class="photos">
 <% @photo_bucket.objects.each do |object| %>
-  <img class="photo" src="<%= AWS::S3::S3Object.url_for(CGI::unescape(object.key), 'heatheranddennis_wedding', use_ssl: true) %>"/>
+  <img class="photo" width="610" src="<%= AWS::S3::S3Object.url_for(CGI::unescape(object.key), 'heatheranddennis_wedding', use_ssl: true) %>"/><br/>
 <% end %>
 </div>

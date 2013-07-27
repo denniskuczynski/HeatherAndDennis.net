@@ -1,10 +1,9 @@
 $(function() {
 
-  $('.direct-upload').each(function() {
+    var upload = $('#direct-upload');
+    var form = $(this).find('form');
 
-    var form = $(this);
-
-    $(this).fileupload({
+    form.fileupload({
       url: form.attr('action'),
       type: 'POST',
       autoUpload: true,
@@ -17,17 +16,20 @@ $(function() {
           data: {doc: {title: data.files[0].name}}, // send the file name to the server so it can generate the key param
           async: false,
           success: function(data) {
+            var form_copy = form.clone().appendTo(upload);
+
             // Now that we have our data, we update the form so it contains all
             // the needed data to sign the request
-            form.find('input[name=key]').val(data.key);
-            form.find('input[name=policy]').val(data.policy);
-            form.find('input[name=signature]').val(data.signature);
+            form_copy.find('input[name=key]').val(data.key);
+            form_copy.find('input[name=policy]').val(data.policy);
+            form_copy.find('input[name=signature]').val(data.signature);
           }
         });
         data.submit();
       },
       send: function(e, data) {
-        $('.progress').fadeIn();
+        console.log("send");
+        console.log(data);
       },
       progress: function(e, data){
         // This is what makes everything really cool, thanks to that callback
@@ -36,7 +38,8 @@ $(function() {
         $('.bar').css('width', percent + '%');
       },
       fail: function(e, data) {
-        $('.progress').fadeOut();
+        console.log("fail");
+        console.log(data);
       },
       success: function(data) {
         // Here we get the file url on s3 in an xml doc
@@ -44,10 +47,10 @@ $(function() {
         //TODO: something with the file
       },
       done: function (event, data) {
-        $('.progress').fadeOut(300, function() {
-          $('.bar').css('width', 0);
-        });
+        $('.bar').css('width', 0);
+        console.log("done");
+        console.log(data);
       }
     });
-  });
+
 });
