@@ -2,7 +2,7 @@ $(function() {
 
   $('.direct-upload').each(function() {
 
-    var form = $(this)
+    var form = $(this);
 
     $(this).fileupload({
       url: form.attr('action'),
@@ -19,11 +19,11 @@ $(function() {
           success: function(data) {
             // Now that we have our data, we update the form so it contains all
             // the needed data to sign the request
-            form.find('input[name=key]').val(data.key)
-            form.find('input[name=policy]').val(data.policy)
-            form.find('input[name=signature]').val(data.signature)
+            form.find('input[name=key]').val(data.key);
+            form.find('input[name=policy]').val(data.policy);
+            form.find('input[name=signature]').val(data.signature);
           }
-        })
+        });
         data.submit();
       },
       send: function(e, data) {
@@ -32,23 +32,22 @@ $(function() {
       progress: function(e, data){
         // This is what makes everything really cool, thanks to that callback
         // you can now update the progress bar based on the upload progress
-        var percent = Math.round((e.loaded / e.total) * 100)
-        $('.bar').css('width', percent + '%')
+        var percent = Math.round((e.loaded / e.total) * 100);
+        $('.bar').css('width', percent + '%');
       },
       fail: function(e, data) {
-        console.log('fail')
+        $('.progress').fadeOut();
       },
       success: function(data) {
         // Here we get the file url on s3 in an xml doc
-        var url = $(data).find('Location').text()
-
-        $('#real_file_url').val(url) // Update the real input in the other form
+        var url = $(data).find('Location').text();
+        //TODO: something with the file
       },
       done: function (event, data) {
         $('.progress').fadeOut(300, function() {
-          $('.bar').css('width', 0)
-        })
-      },
-    })
-  })
-})
+          $('.bar').css('width', 0);
+        });
+      }
+    });
+  });
+});
