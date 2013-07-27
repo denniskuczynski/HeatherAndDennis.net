@@ -26,6 +26,6 @@
 
 <div class="photos">
 <% @photo_bucket.objects.each do |object| %>
-  <%= object.inspect %>
+  <img class="photo" src="<%= AWS::S3::S3Object.url_for(CGI::unescape(object.key), 'heatheranddennis_wedding', use_ssl: true) %>"/>
 <% end %>
 </div>
