@@ -21,3 +21,11 @@
 	    </input>
 	</div>
 </form>
+
+<hr/>
+
+<div class="photos">
+<% @photo_bucket.objects.each do |object| %>
+  <%= object.inspect %>
+<% end %>
+</div>

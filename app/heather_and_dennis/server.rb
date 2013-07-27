@@ -19,6 +19,7 @@ module HeatherAndDennis
     end
 
     get "/photos" do
+      @photo_bucket = get_s3_photo_bucket
       erb :photos
     end
 
@@ -85,6 +86,14 @@ module HeatherAndDennis
           s3_upload_policy_document
         )
       ).gsub(/\n/, '')
+    end
+
+    def get_s3_photo_bucket
+      AWS::S3::Base.establish_connection!(
+        :access_key_id     => ENV['AWS_ACCESS_KEY_ID'], 
+        :secret_access_key => ENV['AWS_SECRET_KEY']
+      )
+      photo_bucket = AWS::S3::Bucket.find('heatheranddennis_wedding')
     end
     
   end
