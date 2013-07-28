@@ -65,7 +65,6 @@ module HeatherAndDennis
           conditions: [
             { bucket: 'heatheranddennis_wedding' },
             { acl: 'public-read' },
-            ["starts-with", "$key", "uploads/"],
             { success_action_status: '201' }
           ]
         }.to_json

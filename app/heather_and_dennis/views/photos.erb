@@ -4,10 +4,9 @@
   Please upload any photos using the form below.
 </p>
 
-<div style="padding: 30px;border: 1px dashed #ddd;">
+<div id="dropzone">
 	<form action="https://heatheranddennis_wedding.s3.amazonaws.com"
-	      class="dropzone"
-	      id="my-awesome-dropzone">
+	      class="dropzone">
 	    <input type="hidden" name="key" value="<%= @key %>"/>
 	    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
 	    <input type="hidden" name="acl" value="public-read"/>
