@@ -1,20 +1,21 @@
 <h3>Photos</h3>
 
 <p class="alert alert-success">
-  Please upload any photos using the form below.<br/>
-  If you have several photos, you can just drag them onto the screen.
+  Please upload any photos using the form below.
 </p>
 
-<form action="/file-upload"
-      class="dropzone"
-      id="my-awesome-dropzone">
-    <input type="hidden" name="key" value="<%= @key %>"/>
-    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
-    <input type="hidden" name="acl" value="public-read"/>
-    <input type="hidden" name="policy" value="<%= @policy %>"/>
-    <input type="hidden" name="signature" value="<%= @signature %>"/>
-    <input type="hidden" name="success_action_status" value="201"/>
-</form>
+<div style="padding: 30px;border: 1px dashed #ddd;">
+	<form action="https://heatheranddennis_wedding.s3.amazonaws.com"
+	      class="dropzone"
+	      id="my-awesome-dropzone">
+	    <input type="hidden" name="key" value="<%= @key %>"/>
+	    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
+	    <input type="hidden" name="acl" value="public-read"/>
+	    <input type="hidden" name="policy" value="<%= @policy %>"/>
+	    <input type="hidden" name="signature" value="<%= @signature %>"/>
+	    <input type="hidden" name="success_action_status" value="201"/>
+	</form>
+</div>
 
 <hr/>
 
