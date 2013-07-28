@@ -168,3 +168,7 @@ input[type=radio] {
     position: relative;
     top: -1px;
 }
+
+.photo {
+    margin-bottom: 10px;
+}
