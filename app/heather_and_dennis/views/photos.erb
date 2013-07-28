@@ -1,5 +1,3 @@
-<h3>Photos</h3>
-
 <div id="dropzone">
 	<form action="https://heatheranddennis_wedding.s3.amazonaws.com"
 	      class="dropzone">
@@ -13,8 +11,10 @@
 </div>
 
 <hr/>
-<a class="btn btn-success offset3" href="/photos">Refresh Gallery</a>
+<a class="btn btn-success offset3" href="/photos#gallery">Refresh Gallery</a>
 <hr/>
+
+<h3 name="gallery">Gallery</h3>
 
 <div class="photos">
 <% @photo_bucket.objects.each do |object| %>

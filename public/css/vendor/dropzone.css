@@ -363,7 +363,6 @@
   color: #666;
 }
 #dropzone {
-  margin: 30px 0;
   -webkit-box-shadow: 0 0 50px rgba(0,0,0,0.13);
   box-shadow: 0 0 50px rgba(0,0,0,0.13);
   padding: 4px;
