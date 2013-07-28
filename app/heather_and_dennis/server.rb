@@ -20,8 +20,8 @@ module HeatherAndDennis
 
     get "/photos" do
       @key = "uploads/#{SecureRandom.uuid}/${filename}"
-      @policy = s3_upload_policy_document
-      @signature = s3_upload_signature
+      @policy = s3_upload_policy_document(@key)
+      @signature = s3_upload_signature(@key)
       @photo_bucket = get_s3_photo_bucket
       erb :photos
     end
@@ -58,25 +58,26 @@ module HeatherAndDennis
 
     private
 
-    def s3_upload_policy_document
+    def s3_upload_policy_document(key)
       Base64.encode64(
         {
           expiration: (Time.now + (30*60)).utc.strftime('%Y-%m-%dT%H:%M:%S.000Z'),
           conditions: [
             { bucket: 'heatheranddennis_wedding' },
             { acl: 'public-read' },
+            ["starts-with", '$key', ""],
             { success_action_status: '201' }
           ]
         }.to_json
       ).gsub(/\n|\r/, '')
     end
 
-    def s3_upload_signature
+    def s3_upload_signature(key)
       Base64.encode64(
         OpenSSL::HMAC.digest(
           OpenSSL::Digest::Digest.new('sha1'),
           ENV['AWS_SECRET_KEY'],
-          s3_upload_policy_document
+          s3_upload_policy_document(key)
         )
       ).gsub(/\n/, '')
     end
