@@ -19,6 +19,9 @@ module HeatherAndDennis
     end
 
     get "/photos" do
+      @key = "uploads/#{SecureRandom.uuid}/${filename}"
+      @policy = s3_upload_policy_document
+      @signature = s3_upload_signature
       @photo_bucket = get_s3_photo_bucket
       erb :photos
     end
@@ -47,15 +50,6 @@ module HeatherAndDennis
 
     get "/registry" do
       erb :registry
-    end
-
-    get "/signed_urls" do
-      content_type :json
-      { policy: s3_upload_policy_document,
-        signature: s3_upload_signature,
-        key: "uploads/#{SecureRandom.uuid}/#{params[:doc][:title]}",
-        success_action_redirect: "/"
-      }.to_json
     end
 
     not_found do

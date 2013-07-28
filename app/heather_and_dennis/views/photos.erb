@@ -5,24 +5,16 @@
   If you have several photos, you can just drag them onto the screen.
 </p>
 
-<div id="direct-upload">
-	<form action="https://heatheranddennis_wedding.s3.amazonaws.com" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="key"/>
-	    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
-	    <input type="hidden" name="acl" value="public-read"/>
-	    <input type="hidden" name="policy"/>
-	    <input type="hidden" name="signature"/>
-	    <input type="hidden" name="success_action_status" value="201"/>
-
-	    <div class="well">
-		    <input type="file" name="file">
-		        <div class="progress progress-striped active">
-		            <div class="bar"></div>
-		        </div>
-		    </input>
-		</div>
-	</form>
-</div>
+<form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone">
+    <input type="hidden" name="key" value="<%= @key %>"/>
+    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
+    <input type="hidden" name="acl" value="public-read"/>
+    <input type="hidden" name="policy" value="<%= @policy %>"/>
+    <input type="hidden" name="signature" value="<%= @signature %>"/>
+    <input type="hidden" name="success_action_status" value="201"/>
+</form>
 
 <hr/>
 
