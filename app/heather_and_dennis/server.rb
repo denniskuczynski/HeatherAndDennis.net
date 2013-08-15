@@ -19,11 +19,19 @@ module HeatherAndDennis
     end
 
     get "/photos" do
-      @key = "uploads/#{SecureRandom.uuid}/${filename}"
-      @policy = s3_upload_policy_document(@key)
-      @signature = s3_upload_signature(@key)
       @photo_bucket = get_s3_photo_bucket
       erb :photos
+    end
+
+    post "/submitPhoto" do
+      bytes = params['file'][:tempfile].read
+      ImageVoodoo.with_bytes(bytes) do |img|
+        img.thumbnail(610) do |img2|
+          save_to_s3 params['file'][:filename], bytes
+          save_to_s3 'thumb_'+params['file'][:filename], img2.bytes('png')
+        end
+      end
+      return { :success => :ok }.to_json
     end
 
     get "/quiz" do
@@ -58,36 +66,20 @@ module HeatherAndDennis
 
     private
 
-    def s3_upload_policy_document(key)
-      Base64.encode64(
-        {
-          expiration: (Time.now + (30*60)).utc.strftime('%Y-%m-%dT%H:%M:%S.000Z'),
-          conditions: [
-            { bucket: 'heatheranddennis_wedding' },
-            { acl: 'public-read' },
-            ["starts-with", '$key', ""],
-            { success_action_status: '201' }
-          ]
-        }.to_json
-      ).gsub(/\n|\r/, '')
-    end
-
-    def s3_upload_signature(key)
-      Base64.encode64(
-        OpenSSL::HMAC.digest(
-          OpenSSL::Digest::Digest.new('sha1'),
-          ENV['AWS_SECRET_KEY'],
-          s3_upload_policy_document(key)
-        )
-      ).gsub(/\n/, '')
-    end
-
     def get_s3_photo_bucket
       AWS::S3::Base.establish_connection!(
         :access_key_id     => ENV['AWS_ACCESS_KEY_ID'], 
         :secret_access_key => ENV['AWS_SECRET_KEY']
       )
       photo_bucket = AWS::S3::Bucket.find('heatheranddennis_wedding')
+    end
+
+    def save_to_s3(filename, file)
+      AWS::S3::Base.establish_connection!(
+        :access_key_id     => ENV['AWS_ACCESS_KEY_ID'], 
+        :secret_access_key => ENV['AWS_SECRET_KEY']
+      )
+      S3Object.store(filename, file, 'heatheranddennis_wedding')
     end
     
   end

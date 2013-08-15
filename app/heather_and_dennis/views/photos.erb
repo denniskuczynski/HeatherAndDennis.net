@@ -1,12 +1,8 @@
 <div id="dropzone">
-	<form action="https://heatheranddennis_wedding.s3.amazonaws.com"
-	      class="dropzone">
-	    <input type="hidden" name="key" value="<%= @key %>"/>
-	    <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"/>
-	    <input type="hidden" name="acl" value="public-read"/>
-	    <input type="hidden" name="policy" value="<%= @policy %>"/>
-	    <input type="hidden" name="signature" value="<%= @signature %>"/>
-	    <input type="hidden" name="success_action_status" value="201"/>
+	<form action="/submitPhoto" class="dropzone" method="post" enctype="multipart/form-data">
+	  <div class="fallback">
+	    <input name="file" type="file" multiple />
+	  </div>
 	</form>
 </div>
 
@@ -19,6 +15,8 @@
 
 <div class="photos">
 <% @photo_bucket.objects.each do |object| %>
-  <img class="photo" width="610" src="<%= AWS::S3::S3Object.url_for(CGI::unescape(object.key), 'heatheranddennis_wedding', use_ssl: true) %>"/><br/>
+    <% if object.key.start_with? 'thumb_' %>
+	    <img class="photo" width="610" src="<%= AWS::S3::S3Object.url_for(CGI::unescape(object.key), 'heatheranddennis_wedding', use_ssl: true) %>"/>
+    <% end %>
 <% end %>
 </div>

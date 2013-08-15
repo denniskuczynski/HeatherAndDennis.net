@@ -5,6 +5,7 @@ require 'openssl'
 require 'json'
 require 'erb'
 require 'aws/s3'
+require 'image_voodoo'
 
 require 'heather_and_dennis/server'
 
