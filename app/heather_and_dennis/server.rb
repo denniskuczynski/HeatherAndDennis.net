@@ -26,12 +26,11 @@ module HeatherAndDennis
     post "/submitPhoto" do
       token = SecureRandom.uuid
       bytes = params['file'][:tempfile].read
-      ImageVoodoo.with_bytes(bytes) do |img|
-        img.thumbnail(610) do |img2|
-          save_to_s3 token + '_' + params['file'][:filename], bytes, params['file'][:type]
-          save_to_s3 'thumb_' + token + '_' + params['file'][:filename], img2.bytes('jpg'), 'image/jpeg'
-        end
-      end
+      image = MiniMagick::Image.read(bytes)
+      image.resize('610x610')
+      scaled_bytes = image.to_blob
+      save_to_s3 token + '_' + params['file'][:filename], bytes, params['file'][:type]
+      save_to_s3 'thumb_' + token + '_' + params['file'][:filename], scaled_bytes, params['file'][:type]
       return { :success => :ok }.to_json
     end
 
