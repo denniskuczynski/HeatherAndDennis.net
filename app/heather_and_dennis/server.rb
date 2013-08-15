@@ -64,10 +64,14 @@ module HeatherAndDennis
     def upload_photos(filename, bytes, content_type)
       token = SecureRandom.uuid
       Thread.new do
+        image = MiniMagick::Image.read(bytes)
+        image.auto_orient!
+        bytes = image.to_blob  
         save_to_s3 token + '_' + filename, bytes, content_type
       end
       Thread.new do
         image = MiniMagick::Image.read(bytes)
+        image.auto_orient!
         image.resize('610x610')
         scaled_bytes = image.to_blob
         save_to_s3 'thumb_' + token + '_' + filename, scaled_bytes, content_type
