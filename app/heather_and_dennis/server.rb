@@ -24,13 +24,7 @@ module HeatherAndDennis
     end
 
     post "/submitPhoto" do
-      token = SecureRandom.uuid
-      bytes = params['file'][:tempfile].read
-      image = MiniMagick::Image.read(bytes)
-      image.resize('610x610')
-      scaled_bytes = image.to_blob
-      save_to_s3 token + '_' + params['file'][:filename], bytes, params['file'][:type]
-      save_to_s3 'thumb_' + token + '_' + params['file'][:filename], scaled_bytes, params['file'][:type]
+      upload_photos params['file'][:filename], params['file'][:tempfile].read, params['file'][:type]
       return { :success => :ok }.to_json
     end
 
@@ -66,6 +60,20 @@ module HeatherAndDennis
 
     private
 
+    # Spawn two threads to upload to S3 in the background
+    def upload_photos(filename, bytes, content_type)
+      token = SecureRandom.uuid
+      Thread.new do
+        save_to_s3 token + '_' + filename, bytes, content_type
+      end
+      Thread.new do
+        image = MiniMagick::Image.read(bytes)
+        image.resize('610x610')
+        scaled_bytes = image.to_blob
+        save_to_s3 'thumb_' + token + '_' + filename, scaled_bytes, content_type
+      end
+    end
+
     def get_s3_photo_bucket
       AWS::S3::Base.establish_connection!(
         :access_key_id     => ENV['AWS_ACCESS_KEY_ID'], 
@@ -74,12 +82,12 @@ module HeatherAndDennis
       photo_bucket = AWS::S3::Bucket.find('heatheranddennis_wedding')
     end
 
-    def save_to_s3(filename, file, content_type)
+    def save_to_s3(filename, bytes, content_type)
       AWS::S3::Base.establish_connection!(
         :access_key_id     => ENV['AWS_ACCESS_KEY_ID'], 
         :secret_access_key => ENV['AWS_SECRET_KEY']
       )
-      AWS::S3::S3Object.store(filename, file, 'heatheranddennis_wedding', :content_type => content_type)
+      AWS::S3::S3Object.store(filename, bytes, 'heatheranddennis_wedding', :content_type => content_type)
     end
     
   end

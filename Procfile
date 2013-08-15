@@ -1,1 +1,1 @@
-web: bundle exec trinidad -p $PORT
+web: bundle exec puma -p $PORT
