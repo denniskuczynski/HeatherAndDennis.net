@@ -24,11 +24,12 @@ module HeatherAndDennis
     end
 
     post "/submitPhoto" do
+      token = SecureRandom.uuid
       bytes = params['file'][:tempfile].read
       ImageVoodoo.with_bytes(bytes) do |img|
         img.thumbnail(610) do |img2|
-          save_to_s3 params['file'][:filename], bytes
-          save_to_s3 'thumb_'+params['file'][:filename], img2.bytes('png')
+          save_to_s3 token + '_' + params['file'][:filename], bytes, params['file'][:type]
+          save_to_s3 'thumb_' + token + '_' + params['file'][:filename], img2.bytes('jpg'), 'image/jpeg'
         end
       end
       return { :success => :ok }.to_json
@@ -74,12 +75,12 @@ module HeatherAndDennis
       photo_bucket = AWS::S3::Bucket.find('heatheranddennis_wedding')
     end
 
-    def save_to_s3(filename, file)
+    def save_to_s3(filename, file, content_type)
       AWS::S3::Base.establish_connection!(
         :access_key_id     => ENV['AWS_ACCESS_KEY_ID'], 
         :secret_access_key => ENV['AWS_SECRET_KEY']
       )
-      AWS::S3::S3Object.store(filename, file, 'heatheranddennis_wedding')
+      AWS::S3::S3Object.store(filename, file, 'heatheranddennis_wedding', :content_type => content_type)
     end
     
   end
